@@ -6,19 +6,6 @@
 	objectVersion = 77;
 	objects = {
 
-/* Begin PBXBuildFile section */
-		4727FFA52CC9944400C70AB3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4727FF9C2CC9944400C70AB3 /* Assets.xcassets */; };
-		4727FFB62CC994B800C70AB3 /* GameType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4727FFB52CC994B800C70AB3 /* GameType.swift */; };
-		4727FFB72CC994B800C70AB3 /* Dependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4727FFB22CC994B800C70AB3 /* Dependencies.swift */; };
-		4727FFB82CC994B800C70AB3 /* GameContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4727FFB32CC994B800C70AB3 /* GameContext.swift */; };
-		4727FFB92CC994B800C70AB3 /* GameModeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4727FFB42CC994B800C70AB3 /* GameModeType.swift */; };
-		472CCC8F2CD288780061F17B /* Tommy2.png in Resources */ = {isa = PBXBuildFile; fileRef = 472CCC8E2CD288780061F17B /* Tommy2.png */; };
-		472CCC912CD2A4E00061F17B /* fridgeBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 472CCC902CD2A4E00061F17B /* fridgeBackground.png */; };
-		476C4A842CD2F2A100B02FE2 /* FFLayoutInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 476C4A832CD2F2A100B02FE2 /* FFLayoutInfo.swift */; };
-		476C4A882CD2F38400B02FE2 /* FFGameContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 476C4A872CD2F38400B02FE2 /* FFGameContext.swift */; };
-		47BEA0C32CCC41F200BECCE9 /* Tommy1.png in Resources */ = {isa = PBXBuildFile; fileRef = 47BEA0C22CCC41F200BECCE9 /* Tommy1.png */; };
-/* End PBXBuildFile section */
-
 /* Begin PBXContainerItemProxy section */
 		47910CA62CC6C80600037207 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -37,29 +24,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		4727FF9C2CC9944400C70AB3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		4727FFB22CC994B800C70AB3 /* Dependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dependencies.swift; sourceTree = "<group>"; };
-		4727FFB32CC994B800C70AB3 /* GameContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameContext.swift; sourceTree = "<group>"; };
-		4727FFB42CC994B800C70AB3 /* GameModeType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModeType.swift; sourceTree = "<group>"; };
-		4727FFB52CC994B800C70AB3 /* GameType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameType.swift; sourceTree = "<group>"; };
-		472CCC8E2CD288780061F17B /* Tommy2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Tommy2.png; sourceTree = "<group>"; };
-		472CCC902CD2A4E00061F17B /* fridgeBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fridgeBackground.png; sourceTree = "<group>"; };
-		476C4A832CD2F2A100B02FE2 /* FFLayoutInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FFLayoutInfo.swift; sourceTree = "<group>"; };
-		476C4A852CD2F2B500B02FE2 /* FFGameInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FFGameInfo.swift; sourceTree = "<group>"; };
-		476C4A872CD2F38400B02FE2 /* FFGameContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FFGameContext.swift; sourceTree = "<group>"; };
-		476C4A892CD2F40500B02FE2 /* FFGameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FFGameScene.swift; sourceTree = "<group>"; };
 		47910C8C2CC6C7FE00037207 /* Fruit_Frenzy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fruit_Frenzy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		47910CA52CC6C80600037207 /* Fruit_FrenzyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Fruit_FrenzyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		47910CAF2CC6C80600037207 /* Fruit_FrenzyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Fruit_FrenzyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		47BEA0C22CCC41F200BECCE9 /* Tommy1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Tommy1.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		476C4A802CD2F20100B02FE2 /* Nodes */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = Nodes;
-			sourceTree = "<group>";
-		};
 		47910C8E2CC6C7FE00037207 /* Fruit_Frenzy */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = Fruit_Frenzy;
@@ -102,70 +72,9 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4727FFBC2CC994E000C70AB3 /* Code */ = {
-			isa = PBXGroup;
-			children = (
-				476C4A822CD2F21500B02FE2 /* Helpers */,
-				476C4A812CD2F20C00B02FE2 /* Models */,
-				476C4A802CD2F20100B02FE2 /* Nodes */,
-				476C4A7E2CD2F1DF00B02FE2 /* States */,
-				476C4A872CD2F38400B02FE2 /* FFGameContext.swift */,
-				476C4A892CD2F40500B02FE2 /* FFGameScene.swift */,
-			);
-			path = Code;
-			sourceTree = "<group>";
-		};
-		4727FFBD2CC994ED00C70AB3 /* Assets */ = {
-			isa = PBXGroup;
-			children = (
-				4727FF9C2CC9944400C70AB3 /* Assets.xcassets */,
-				472CCC902CD2A4E00061F17B /* fridgeBackground.png */,
-				47BEA0C22CCC41F200BECCE9 /* Tommy1.png */,
-				472CCC8E2CD288780061F17B /* Tommy2.png */,
-			);
-			path = Assets;
-			sourceTree = "<group>";
-		};
-		4727FFBE2CC9950F00C70AB3 /* Base */ = {
-			isa = PBXGroup;
-			children = (
-				4727FFB22CC994B800C70AB3 /* Dependencies.swift */,
-				4727FFB32CC994B800C70AB3 /* GameContext.swift */,
-				4727FFB42CC994B800C70AB3 /* GameModeType.swift */,
-				4727FFB52CC994B800C70AB3 /* GameType.swift */,
-			);
-			path = Base;
-			sourceTree = "<group>";
-		};
-		476C4A7E2CD2F1DF00B02FE2 /* States */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = States;
-			sourceTree = "<group>";
-		};
-		476C4A812CD2F20C00B02FE2 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		476C4A822CD2F21500B02FE2 /* Helpers */ = {
-			isa = PBXGroup;
-			children = (
-				476C4A832CD2F2A100B02FE2 /* FFLayoutInfo.swift */,
-				476C4A852CD2F2B500B02FE2 /* FFGameInfo.swift */,
-			);
-			path = Helpers;
-			sourceTree = "<group>";
-		};
 		47910C832CC6C7FE00037207 = {
 			isa = PBXGroup;
 			children = (
-				4727FFBE2CC9950F00C70AB3 /* Base */,
-				4727FFBD2CC994ED00C70AB3 /* Assets */,
-				4727FFBC2CC994E000C70AB3 /* Code */,
 				47910C8E2CC6C7FE00037207 /* Fruit_Frenzy */,
 				47910CA82CC6C80600037207 /* Fruit_FrenzyTests */,
 				47910CB22CC6C80600037207 /* Fruit_FrenzyUITests */,
@@ -303,10 +212,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				472CCC912CD2A4E00061F17B /* fridgeBackground.png in Resources */,
-				47BEA0C32CCC41F200BECCE9 /* Tommy1.png in Resources */,
-				472CCC8F2CD288780061F17B /* Tommy2.png in Resources */,
-				4727FFA52CC9944400C70AB3 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -331,12 +236,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				476C4A842CD2F2A100B02FE2 /* FFLayoutInfo.swift in Sources */,
-				4727FFB62CC994B800C70AB3 /* GameType.swift in Sources */,
-				4727FFB72CC994B800C70AB3 /* Dependencies.swift in Sources */,
-				4727FFB82CC994B800C70AB3 /* GameContext.swift in Sources */,
-				476C4A882CD2F38400B02FE2 /* FFGameContext.swift in Sources */,
-				4727FFB92CC994B800C70AB3 /* GameModeType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
