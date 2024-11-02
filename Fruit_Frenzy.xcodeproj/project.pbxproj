@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4701ED542CD6869400711DA7 /* Collisions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4701ED462CD6869400711DA7 /* Collisions.swift */; };
+		4701ED552CD6869400711DA7 /* FFGameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4701ED472CD6869400711DA7 /* FFGameScene.swift */; };
+		4701ED562CD6869400711DA7 /* GameOverHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4701ED482CD6869400711DA7 /* GameOverHandler.swift */; };
+		4701ED5A2CD6869400711DA7 /* SpeedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4701ED4F2CD6869400711DA7 /* SpeedController.swift */; };
 		4727FFA52CC9944400C70AB3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4727FF9C2CC9944400C70AB3 /* Assets.xcassets */; };
 		4727FFB62CC994B800C70AB3 /* GameType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4727FFB52CC994B800C70AB3 /* GameType.swift */; };
 		4727FFB72CC994B800C70AB3 /* Dependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4727FFB22CC994B800C70AB3 /* Dependencies.swift */; };
@@ -37,6 +41,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4701ED462CD6869400711DA7 /* Collisions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collisions.swift; sourceTree = "<group>"; };
+		4701ED472CD6869400711DA7 /* FFGameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FFGameScene.swift; sourceTree = "<group>"; };
+		4701ED482CD6869400711DA7 /* GameOverHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverHandler.swift; sourceTree = "<group>"; };
+		4701ED4F2CD6869400711DA7 /* SpeedController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedController.swift; sourceTree = "<group>"; };
 		4727FF9C2CC9944400C70AB3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4727FFB22CC994B800C70AB3 /* Dependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dependencies.swift; sourceTree = "<group>"; };
 		4727FFB32CC994B800C70AB3 /* GameContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameContext.swift; sourceTree = "<group>"; };
@@ -47,16 +55,30 @@
 		476C4A832CD2F2A100B02FE2 /* FFLayoutInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FFLayoutInfo.swift; sourceTree = "<group>"; };
 		476C4A852CD2F2B500B02FE2 /* FFGameInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FFGameInfo.swift; sourceTree = "<group>"; };
 		476C4A872CD2F38400B02FE2 /* FFGameContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FFGameContext.swift; sourceTree = "<group>"; };
-		476C4A892CD2F40500B02FE2 /* FFGameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FFGameScene.swift; sourceTree = "<group>"; };
 		47910C8C2CC6C7FE00037207 /* Fruit_Frenzy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fruit_Frenzy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		47910CA52CC6C80600037207 /* Fruit_FrenzyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Fruit_FrenzyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		47910CAF2CC6C80600037207 /* Fruit_FrenzyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Fruit_FrenzyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		47BEA0C22CCC41F200BECCE9 /* Tommy1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Tommy1.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		4701ED652CD6943500711DA7 /* Exceptions for "Nodes" folder in "Fruit_Frenzy" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				BackgroundManager.swift,
+				ObstacleManager.swift,
+				PlayerNode.swift,
+			);
+			target = 47910C8B2CC6C7FE00037207 /* Fruit_Frenzy */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		476C4A802CD2F20100B02FE2 /* Nodes */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				4701ED652CD6943500711DA7 /* Exceptions for "Nodes" folder in "Fruit_Frenzy" target */,
+			);
 			path = Nodes;
 			sourceTree = "<group>";
 		};
@@ -110,7 +132,7 @@
 				476C4A802CD2F20100B02FE2 /* Nodes */,
 				476C4A7E2CD2F1DF00B02FE2 /* States */,
 				476C4A872CD2F38400B02FE2 /* FFGameContext.swift */,
-				476C4A892CD2F40500B02FE2 /* FFGameScene.swift */,
+				4701ED472CD6869400711DA7 /* FFGameScene.swift */,
 			);
 			path = Code;
 			sourceTree = "<group>";
@@ -140,6 +162,7 @@
 		476C4A7E2CD2F1DF00B02FE2 /* States */ = {
 			isa = PBXGroup;
 			children = (
+				4701ED482CD6869400711DA7 /* GameOverHandler.swift */,
 			);
 			path = States;
 			sourceTree = "<group>";
@@ -156,6 +179,8 @@
 			children = (
 				476C4A832CD2F2A100B02FE2 /* FFLayoutInfo.swift */,
 				476C4A852CD2F2B500B02FE2 /* FFGameInfo.swift */,
+				4701ED4F2CD6869400711DA7 /* SpeedController.swift */,
+				4701ED462CD6869400711DA7 /* Collisions.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -335,6 +360,10 @@
 				4727FFB62CC994B800C70AB3 /* GameType.swift in Sources */,
 				4727FFB72CC994B800C70AB3 /* Dependencies.swift in Sources */,
 				4727FFB82CC994B800C70AB3 /* GameContext.swift in Sources */,
+				4701ED542CD6869400711DA7 /* Collisions.swift in Sources */,
+				4701ED552CD6869400711DA7 /* FFGameScene.swift in Sources */,
+				4701ED562CD6869400711DA7 /* GameOverHandler.swift in Sources */,
+				4701ED5A2CD6869400711DA7 /* SpeedController.swift in Sources */,
 				476C4A882CD2F38400B02FE2 /* FFGameContext.swift in Sources */,
 				4727FFB92CC994B800C70AB3 /* GameModeType.swift in Sources */,
 			);
