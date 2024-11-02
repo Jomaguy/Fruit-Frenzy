@@ -12,8 +12,9 @@ class BackgroundManager {
     var backgroundNode2: SKSpriteNode!
     var backgroundSpeed: CGFloat
 
-    init(scene: SKScene) {
+    init(scene: SKScene, initialSpeed: CGFloat = 100.0) {
         // backgroundNode1 and backgroundNode 2 are two instances representing two images used to create a seamless scrolling background.
+        self.backgroundSpeed = initialSpeed
         backgroundNode1 = SKSpriteNode(imageNamed: "fridgeBackground")
         backgroundNode1.size = scene.size
         backgroundNode1.position = CGPoint(x: scene.size.width / 2, y: scene.size.height / 2)
@@ -26,8 +27,6 @@ class BackgroundManager {
         backgroundNode2.zPosition = -1
         scene.addChild(backgroundNode2)
         
-        // Controls the speed at which the background scrolls
-        self.backgroundSpeed = 100.0
     }
     
     // This updates the background screen as one Node moves out of the screen it is placed right above the one currently on the background

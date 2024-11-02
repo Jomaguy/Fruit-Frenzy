@@ -60,7 +60,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         player = PlayerNode(scene: self, tommyCategory: tommyCategory, enemyCategory: enemyCategory)
         backgroundManager = BackgroundManager(scene: self)
         obstacleManager = ObstacleManager(scene: self)
-        speedController = SpeedController(scene: self, backgroundSpeed: 100.0, obstacleSpeed: 50.0)
+        speedController = SpeedController(scene: self, backgroundSpeed: 100.0, obstacleSpeed: 100.0)
         gameOverHandler = GameOverHandler(scene: self)
 
         
@@ -119,7 +119,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         let spawnObstacles = SKAction.run { [weak self] in
             guard let self = self else { return }
-            self.obstacleManager.spawnObstacle(scene: self, speed: self.speedController.obstacleSpeed)
+            self.obstacleManager.spawnObstacle(scene: self)
         }
         
         run(SKAction.repeatForever(SKAction.sequence([spawnObstacles, .wait(forDuration: Double.random(in: 1...2))])))
