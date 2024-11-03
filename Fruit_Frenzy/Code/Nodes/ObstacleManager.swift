@@ -10,21 +10,38 @@ import SpriteKit
 class ObstacleManager {
     // obstacles: An array of SKSpriteNode objects that represent the obstacles currently in the scene. Each time an obstacle is spawned, it's added to this array, allowing the code to manage them collectively.
     var obstacles: [SKSpriteNode] = []
-   
-    let maxObstacles = 4 // Limits the amount of obstacles on the screen simultaneously
+    let maxObstacles = 4// Limits the amount of obstacles on the screen simultaneously
+    var obstacleSpeed: CGFloat = 100.0  // Accessed from BackgroundManager for consistent speed
     
-    var baseSpeed = 100.0  // Accessed from BackgroundManager for consistent speed
+    // Reference to SpeedController (make sure to initialize this in your setup)
+    var speedController: SpeedController?
+    
+    // Image name for obstacles
+    let movingObstacleImages = ["ZombiePineapple", "ZombieWatermelon"]
+    let staticObstacleImages = ["StaticBanana", "StaticBrocoli"]
     
     init(scene: SKScene) {}
 
     func spawnObstacle(scene: SKScene) {
         if obstacles.count >= maxObstacles { return }
         
-        // Create a new Node
-        let obstacle = SKSpriteNode(color: .red, size: CGSize(width: 50, height: 50))
-        obstacle.position = CGPoint(x: CGFloat.random(in: 0...scene.size.width), y: 0)
+        // Randomly determine if the obstacle will be moving or stationary
+        let isMovingObstacle = Bool.random()
         
-        obstacle.physicsBody = SKPhysicsBody(rectangleOf: obstacle.size)
+        // Select an image based on the obstacle type
+        let obstacleImageName = isMovingObstacle ? movingObstacleImages.randomElement()! : staticObstacleImages.randomElement()!
+        
+        // Create a new Node with a randomly selected texture
+        let obstacleTexture = SKTexture(imageNamed: obstacleImageName)
+        let baseSize = CGSize(width: 100, height: 100) // Adjust the base size if needed
+        
+        // Adjust the size based on obstacle type
+        let obstacleSize = isMovingObstacle ? baseSize : CGSize(width: baseSize.width * 1.5, height: baseSize.height * 1.5)
+        let obstacle = SKSpriteNode(texture: obstacleTexture)
+        obstacle.size = obstacleSize
+        obstacle.position = CGPoint(x: CGFloat.random(in: 0...scene.size.width), y: 0)
+                
+        obstacle.physicsBody = SKPhysicsBody(texture: obstacleTexture, size: obstacle.size)
         obstacle.physicsBody?.isDynamic = true
         obstacle.physicsBody?.categoryBitMask = GameScene().enemyCategory
         obstacle.physicsBody?.contactTestBitMask = GameScene().tommyCategory
@@ -35,11 +52,10 @@ class ObstacleManager {
         // Add to the list
         obstacles.append(obstacle)
         
-        // Randomly determine if the obstacle will be moving or stationary
-        let isMovingObstacle = Bool.random()
+        
         // Conditional statement. If the condition is meet then the code on the left of the colon is executed otherwise the code on the right is
-        let speedMultiplier = isMovingObstacle ? CGFloat.random(in: 1.5...2.0) : 1.0
-        let obstacleSpeed = baseSpeed * speedMultiplier
+        let speedMultiplier = isMovingObstacle ? CGFloat.random(in: 2...2.5) : 1.0
+        let obstacleSpeed = obstacleSpeed * speedMultiplier
 
         // Define upward movement
         let moveUp = SKAction.moveBy(x: 0, y: scene.size.height + obstacle.size.height, duration: TimeInterval(scene.size.height / obstacleSpeed))
@@ -47,13 +63,23 @@ class ObstacleManager {
         // For moving obstacles, apply a wider, more intense zigzag pattern
         if isMovingObstacle {
             // Define the zigzag action with random horizontal offsets and varied durations
+            
             let zigzagAction = SKAction.run { [weak self] in
-                guard let self = self else { return }
+                        guard let self = self else { return }
                         
-            let randomHorizontalOffset = CGFloat.random(in: -scene.size.width / 2...scene.size.width / 2)
-            let randomDuration = Double.random(in: 0.5...1.5)
+                    // NEW: Calculate a safe horizontal offset to keep within bounds
+                    let maxOffset = (scene.size.width - obstacle.size.width) / 2
                         
-                let zigzagMove = SKAction.moveBy(x: randomHorizontalOffset, y:scene.size.height / 10, duration: randomDuration); obstacle.run(zigzagMove)
+                    // NEW: Generate a random horizontal offset within the bounds
+                    let randomHorizontalOffset = CGFloat.random(in: -maxOffset...maxOffset)
+                    let newXPosition = obstacle.position.x + randomHorizontalOffset
+                        
+                    // NEW: Clamp the new position within scene bounds
+                    let clampedXPosition = max(obstacle.size.width / 2, min(scene.size.width - obstacle.size.width / 2, newXPosition))
+                        
+                    // NEW: Use moveTo(x:) to precisely control the x position within bounds
+                let zigzagMove = SKAction.moveTo(x: clampedXPosition, duration: Double.random(in: 0.5...1.5))
+                obstacle.run(zigzagMove)
                 }
                     
             // Repeat the zigzag action to create continuous movement
@@ -76,7 +102,11 @@ class ObstacleManager {
                 obstacle.run(SKAction.sequence([moveUp, removeAction]))
                 }
             }
-    func update() {
+    func update(speed: CGFloat) {
+        // Update obstacle speed from SpeedController
+        obstacleSpeed = speed
+        
+        
         obstacles = obstacles.filter { $0.position.y <= UIScreen.main.bounds.height }
             }
 }

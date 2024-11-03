@@ -8,9 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		4727FFA52CC9944400C70AB3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4727FF9C2CC9944400C70AB3 /* Assets.xcassets */; };
-		472CCC8F2CD288780061F17B /* Tommy2.png in Resources */ = {isa = PBXBuildFile; fileRef = 472CCC8E2CD288780061F17B /* Tommy2.png */; };
-		472CCC912CD2A4E00061F17B /* fridgeBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 472CCC902CD2A4E00061F17B /* fridgeBackground.png */; };
-		47BEA0C32CCC41F200BECCE9 /* Tommy1.png in Resources */ = {isa = PBXBuildFile; fileRef = 47BEA0C22CCC41F200BECCE9 /* Tommy1.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,12 +29,9 @@
 
 /* Begin PBXFileReference section */
 		4727FF9C2CC9944400C70AB3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		472CCC8E2CD288780061F17B /* Tommy2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Tommy2.png; sourceTree = "<group>"; };
-		472CCC902CD2A4E00061F17B /* fridgeBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fridgeBackground.png; sourceTree = "<group>"; };
 		47910C8C2CC6C7FE00037207 /* Fruit_Frenzy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fruit_Frenzy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		47910CA52CC6C80600037207 /* Fruit_FrenzyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Fruit_FrenzyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		47910CAF2CC6C80600037207 /* Fruit_FrenzyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Fruit_FrenzyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		47BEA0C22CCC41F200BECCE9 /* Tommy1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Tommy1.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -100,9 +94,6 @@
 			isa = PBXGroup;
 			children = (
 				4727FF9C2CC9944400C70AB3 /* Assets.xcassets */,
-				472CCC902CD2A4E00061F17B /* fridgeBackground.png */,
-				47BEA0C22CCC41F200BECCE9 /* Tommy1.png */,
-				472CCC8E2CD288780061F17B /* Tommy2.png */,
 			);
 			path = Assets;
 			sourceTree = "<group>";
@@ -248,9 +239,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				472CCC912CD2A4E00061F17B /* fridgeBackground.png in Resources */,
-				47BEA0C32CCC41F200BECCE9 /* Tommy1.png in Resources */,
-				472CCC8F2CD288780061F17B /* Tommy2.png in Resources */,
 				4727FFA52CC9944400C70AB3 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -435,6 +423,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8R78D72FV3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -442,6 +431,7 @@
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.7;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -462,6 +452,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8R78D72FV3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -469,6 +460,7 @@
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.7;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

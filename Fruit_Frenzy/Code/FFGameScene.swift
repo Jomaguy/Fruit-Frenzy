@@ -142,7 +142,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         // Updating background and obstacle manager
         backgroundManager.update(speed: speedController.backgroundSpeed)
-        obstacleManager.update()
+        obstacleManager.update(speed: speedController.obstacleSpeed)
+        
     }
     
     

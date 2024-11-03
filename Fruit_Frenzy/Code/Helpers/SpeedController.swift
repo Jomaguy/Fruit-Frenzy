@@ -10,7 +10,8 @@ import SpriteKit
 class SpeedController {
     var backgroundSpeed: CGFloat
     var obstacleSpeed: CGFloat
-    let maxSpeed: CGFloat = 300.0
+    let maxSpeedBackground: CGFloat = 800.0
+    let maxSpeedObstacles: CGFloat = 400.0
 
 
     init(scene: SKScene, backgroundSpeed: CGFloat, obstacleSpeed: CGFloat) {
@@ -19,11 +20,11 @@ class SpeedController {
     }
     
     func increaseBackgroundSpeed() {
-        backgroundSpeed = min(backgroundSpeed + 20.0, maxSpeed)
+        backgroundSpeed = min(backgroundSpeed + 100.0, maxSpeedBackground)
     }
     
     func increaseObstacleSpeed() {
-        obstacleSpeed = min(obstacleSpeed + 20.0, maxSpeed)
+        obstacleSpeed = min(obstacleSpeed + 25.0, maxSpeedObstacles)
     }
 }
 
