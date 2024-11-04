@@ -58,7 +58,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         // View the physics body outline to visually inspect during simulator
         // Use for debug purposes
-        // view.showsPhysics = true
+        //view.showsPhysics = true
         
 
         

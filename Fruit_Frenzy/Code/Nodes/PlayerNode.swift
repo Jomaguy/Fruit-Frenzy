@@ -16,10 +16,13 @@ class PlayerNode {
         node.size = CGSize(width: 100, height: 100)
         node.position = CGPoint(x: scene.size.width / 2, y: scene.size.height - 150)
         
-        // Add circular physics to Tommy
-        node.physicsBody = SKPhysicsBody(circleOfRadius: node.size.width / 2)
+        // Create a texture-based physics body to match Tommy's image shape
+        let tommyTexture = SKTexture(imageNamed: "Tommy2")
+        node.physicsBody = SKPhysicsBody(texture: tommyTexture, size: node.size)
+        
         // Allows Tommy to be affected by the physics engine, which makes him responsive to interactions and collisions
         node.physicsBody?.isDynamic = true
+        
         // Sets Tommy's category bitmask to tommyCategory, identifying him for collision detection purposes.
         node.physicsBody?.categoryBitMask = tommyCategory
         
