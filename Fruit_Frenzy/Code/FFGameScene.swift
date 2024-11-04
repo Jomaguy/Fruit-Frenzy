@@ -56,6 +56,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         didBegin(_:) function, which responds to the start of each contact
         setupTommy) */
         
+        // View the physics body outline to visually inspect during simulator
+        // Use for debug purposes
+        // view.showsPhysics = true
+        
+
+        
         // Instantiates all the different objects used
         player = PlayerNode(scene: self, tommyCategory: tommyCategory, enemyCategory: enemyCategory)
         backgroundManager = BackgroundManager(scene: self)

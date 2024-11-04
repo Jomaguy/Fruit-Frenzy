@@ -18,7 +18,7 @@ class ObstacleManager {
     
     // Image name for obstacles
     let movingObstacleImages = ["ZombiePineapple", "ZombieWatermelon"]
-    let staticObstacleImages = ["StaticBanana", "StaticBrocoli"]
+    let staticObstacleImages = ["StaticApple", "StaticBrocoli"]
     
     init(scene: SKScene) {}
 
@@ -40,8 +40,20 @@ class ObstacleManager {
         let obstacle = SKSpriteNode(texture: obstacleTexture)
         obstacle.size = obstacleSize
         obstacle.position = CGPoint(x: CGFloat.random(in: 0...scene.size.width), y: 0)
-                
-        obstacle.physicsBody = SKPhysicsBody(texture: obstacleTexture, size: obstacle.size)
+        
+       
+        if obstacleImageName == "StaticBanana1" {
+            let halfSize = CGSize(width: obstacle.size.width / 1.8, height: obstacle.size.height / 1.1)
+            obstacle.physicsBody = SKPhysicsBody(rectangleOf: halfSize)
+        } else {
+            obstacle.physicsBody = SKPhysicsBody(texture: obstacleTexture, size: obstacle.size)
+            if obstacle.physicsBody == nil {
+                // Fallback if texture-based body creation fails
+                let halfSize = CGSize(width: obstacle.size.width / 2, height: obstacle.size.height / 2)
+                    obstacle.physicsBody = SKPhysicsBody(rectangleOf: halfSize)
+            }
+        }
+        
         obstacle.physicsBody?.isDynamic = true
         obstacle.physicsBody?.categoryBitMask = GameScene().enemyCategory
         obstacle.physicsBody?.contactTestBitMask = GameScene().tommyCategory
