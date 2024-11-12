@@ -77,7 +77,7 @@ class ObstacleManager {
             // Define the zigzag action with random horizontal offsets and varied durations
             
             let zigzagAction = SKAction.run { [weak self] in
-                        guard let self = self else { return }
+                guard self != nil else { return }
                         
                     // NEW: Calculate a safe horizontal offset to keep within bounds
                     let maxOffset = (scene.size.width - obstacle.size.width) / 2

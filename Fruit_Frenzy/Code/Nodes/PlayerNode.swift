@@ -12,6 +12,7 @@ class PlayerNode {
     var node: SKSpriteNode
     let motionManager = CMMotionManager()
     
+    
     init(scene: SKScene, tommyCategory: UInt32, enemyCategory: UInt32, coinCategory: UInt32) {
         node = SKSpriteNode(imageNamed: "Tommy2")
         node.size = CGSize(width: 100, height: 100)
@@ -55,8 +56,8 @@ class PlayerNode {
                 let tiltY = data.gravity.y // Invert y-axis for correct screen orientation
                 
                 // Adjust these multipliers to control sensitivity
-                let moveAmountX = CGFloat(tiltX * 15)
-                let moveAmountY = CGFloat(tiltY * 6)
+                let moveAmountX = CGFloat(tiltX * 20)
+                let moveAmountY = CGFloat(tiltY * 20)
                 
                 var newPosition = node.position
                 newPosition.x += moveAmountX

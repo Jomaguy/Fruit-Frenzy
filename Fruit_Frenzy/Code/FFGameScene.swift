@@ -17,6 +17,16 @@ import GameplayKit
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
+    //Adding lives
+    var lives: Int = 1
+    var livesLabel: SKLabelNode!
+    
+    // ADD: Properties for power-ups
+    var powerUps: [PowerUpNode] = []
+    let powerUpCategory: UInt32 = 0x1 << 3
+
+    
+    
     //Adding coins
     var coins: [CoinNode] = []
     var coinCount: Int = 0
@@ -97,6 +107,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             setupUI()
             setupTimers()
             startCoinSpawning()
+            startPowerUpSpawning()
+        
         }
     
     // Add this function to spawn coins
@@ -113,8 +125,32 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             print("Coin spawning started") // Add this line
         }
     
+    // ADD: Function to spawn power-ups
+        func startPowerUpSpawning() {
+            let spawnPowerUp = SKAction.run { [weak self] in
+                guard let self = self else { return }
+                let powerUp = PowerUpNode(scene: self, powerUpCategory: self.powerUpCategory, playerCategory: self.tommyCategory, speed: self.speedController.obstacleSpeed)
+                self.powerUps.append(powerUp)
+            }
+            
+            let waitAction = SKAction.wait(forDuration: 15.0) // Adjust this value to change power-up spawn frequency
+            let spawnSequence = SKAction.sequence([spawnPowerUp, waitAction])
+            run(SKAction.repeatForever(spawnSequence), withKey: "spawnPowerUps")
+            print("Power-up spawning started")
+        }
+    
     
     func setupUI() {
+        
+        
+        // ADD: Set up lives label
+        livesLabel = SKLabelNode(fontNamed: "Arial")
+        livesLabel.fontSize = 24
+        livesLabel.fontColor = .white
+        livesLabel.position = CGPoint(x: size.width - 20, y: size.height - 100) // Adjust position as needed
+        livesLabel.horizontalAlignmentMode = .right
+        livesLabel.text = "Lives: \(lives)"
+                addChild(livesLabel)
         
         // Add this block to create the coin count label
         coinCountLabel = SKLabelNode(fontNamed: "Arial")
@@ -209,7 +245,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     handleCollision()
                 } else if contact.bodyA.categoryBitMask == coinCategory || contact.bodyB.categoryBitMask == coinCategory {
                     handleCoinCollection(contact: contact)
+                } else if contact.bodyA.categoryBitMask == powerUpCategory || contact.bodyB.categoryBitMask == powerUpCategory {
+                    handlePowerUpCollection(contact: contact)
                 }
+
             
         }
 
@@ -228,6 +267,37 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             // Update UI to show collected coins
             updateCoinCountLabel()
         }
+    
+    // ADD: Function to handle power-up collection
+        func handlePowerUpCollection(contact: SKPhysicsContact) {
+            guard let powerUpNode = (contact.bodyA.categoryBitMask == powerUpCategory ? contact.bodyA.node : contact.bodyB.node) else {
+                print("Error: Power-up node is nil")
+                return
+            }
+        
+            
+            if let powerUp = powerUps.first(where: { $0.node === powerUpNode }) {
+                applyPowerUpEffect(type: powerUp.type)
+            }
+            
+            powerUpNode.removeFromParent()
+            powerUps.removeAll { $0.node === powerUpNode }
+            
+            print("Power-up collected")
+        }
+    
+    // ADD: Function to apply power-up effects
+        func applyPowerUpEffect(type: PowerUpNode.PowerUpType) {
+            switch type {
+            case .extraLife:
+                lives += 1
+                livesLabel.text = "Lives: \(lives)"
+                print("Extra life collected. Total lives: \(lives)")
+            }
+        }
+
+    
+    
         
         // Add this function to update the coin count label
         func updateCoinCountLabel() {
@@ -236,12 +306,30 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         // Modify the existing handleCollision function
-        func handleCollision() {
-            isGameOver = true
-            
-            
-            gameOverHandler.triggerGameOver(startTime: startTime, coinCount: coinCount)
+    func handleCollision() {
+            if lives > 1 {
+                lives -= 1
+                livesLabel.text = "Lives: \(lives)"
+                // Implement temporary invincibility or respawn logic here
+                // ADD: Temporary invincibility
+                player.node.run(SKAction.sequence([
+                            SKAction.fadeAlpha(to: 0.5, duration: 0.2),
+                            SKAction.wait(forDuration: 1.5),
+                            SKAction.fadeAlpha(to: 1.0, duration: 0.2)
+                        ]))
+                        // ADD: Disable collisions temporarily
+                        player.node.physicsBody?.categoryBitMask = 0
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) { [weak self] in
+                            self?.player.node.physicsBody?.categoryBitMask = self?.tommyCategory ?? 0
+                        }
+
+            } else {
+                isGameOver = true
+                gameOverHandler.triggerGameOver(startTime: startTime, coinCount: coinCount)
+            }
         }
+    
+    
 
     
     
