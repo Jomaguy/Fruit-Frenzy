@@ -17,7 +17,13 @@ import GameplayKit
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
-    // Declare instances of supporting classes 
+    //Adding coins
+    var coins: [CoinNode] = []
+    var coinCount: Int = 0
+    let coinCategory: UInt32 = 0x1 << 2
+    var coinCountLabel: SKLabelNode!
+    
+    // Declare instances of supporting classes
     var player: PlayerNode!
     var backgroundManager: BackgroundManager!
     var obstacleManager: ObstacleManager!
@@ -44,6 +50,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     other. By setting up unique bitmasks, the game can selectively
     detect contacts, which is essential for triggering actions like ending
     the game when Tommy collides with an obstacle. */
+    
+  
 
     // Used to initialize and configure all elements in the scene
     override func didMove(to view: SKView) {
@@ -63,19 +71,60 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
         
         // Instantiates all the different objects used
-        player = PlayerNode(scene: self, tommyCategory: tommyCategory, enemyCategory: enemyCategory)
-        backgroundManager = BackgroundManager(scene: self)
-        obstacleManager = ObstacleManager(scene: self)
-        speedController = SpeedController(scene: self, backgroundSpeed: 100.0, obstacleSpeed: 100.0)
-        gameOverHandler = GameOverHandler(scene: self)
+        //player = PlayerNode(scene: self, tommyCategory: tommyCategory, enemyCategory: enemyCategory)
+       // backgroundManager = BackgroundManager(scene: self)
+        //obstacleManager = ObstacleManager(scene: self)
+        //speedController = SpeedController(scene: self, backgroundSpeed: 100.0, obstacleSpeed: 100.0)
+        //gameOverHandler = GameOverHandler(scene: self)
 
         
-        setupUI()
-        setupTimers()
+        //setupUI()
+        //setupTimers()
+        
+        setupGame()
     }
+    
+    func setupGame() {
+            physicsWorld.gravity = .zero
+            physicsWorld.contactDelegate = self
+            
+        player = PlayerNode(scene: self, tommyCategory: tommyCategory, enemyCategory: enemyCategory, coinCategory: coinCategory)
+            backgroundManager = BackgroundManager(scene: self)
+            obstacleManager = ObstacleManager(scene: self)
+            speedController = SpeedController(scene: self, backgroundSpeed: 100.0, obstacleSpeed: 100.0)
+            gameOverHandler = GameOverHandler(scene: self)
+            
+            setupUI()
+            setupTimers()
+            startCoinSpawning()
+        }
+    
+    // Add this function to spawn coins
+        func startCoinSpawning() {
+            let spawnCoin = SKAction.run { [weak self] in
+                guard let self = self else { return }
+                let coin = CoinNode(scene: self, coinCategory: self.coinCategory, playerCategory: self.tommyCategory, speed: self.speedController.obstacleSpeed)
+                self.coins.append(coin)
+            }
+            
+            let waitAction = SKAction.wait(forDuration: 3.0) // Adjust this value to change coin spawn frequency
+            let spawnSequence = SKAction.sequence([spawnCoin, waitAction])
+            run(SKAction.repeatForever(spawnSequence), withKey: "spawnCoins")
+            print("Coin spawning started") // Add this line
+        }
     
     
     func setupUI() {
+        
+        // Add this block to create the coin count label
+        coinCountLabel = SKLabelNode(fontNamed: "Arial")
+        coinCountLabel.fontSize = 24
+        coinCountLabel.fontColor = .white
+        coinCountLabel.position = CGPoint(x: size.width - 20, y: size.height - 70) // Adjust position as needed
+        coinCountLabel.horizontalAlignmentMode = .right
+        coinCountLabel.text = "Coins: 0"
+        addChild(coinCountLabel)
+        
         // Setting the time label on the top right corner of the screen
         timerLabel = SKLabelNode(fontNamed: "Arial")
         timerLabel.fontSize = 24
@@ -150,48 +199,51 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         backgroundManager.update(speed: speedController.backgroundSpeed)
         obstacleManager.update(speed: speedController.obstacleSpeed)
         
+        player.update(in: self)
     }
     
     
 
     func didBegin(_ contact: SKPhysicsContact) {
-        if contact.isCollisionBetweenPlayerAndObstacle(playerCategory: tommyCategory, obstacleCategory: enemyCategory) {
-            gameOverHandler.triggerGameOver(startTime: startTime)
+                if contact.isCollisionBetweenPlayerAndObstacle(playerCategory: tommyCategory, obstacleCategory: enemyCategory) {
+                    handleCollision()
+                } else if contact.bodyA.categoryBitMask == coinCategory || contact.bodyB.categoryBitMask == coinCategory {
+                    handleCoinCollection(contact: contact)
+                }
+            
+        }
+
+    // Add this function to handle coin collection
+        func handleCoinCollection(contact: SKPhysicsContact) {
+            let coinNode: SKNode
+            guard let coinNode = (contact.bodyA.categoryBitMask == coinCategory ? contact.bodyA.node : contact.bodyB.node) else {
+                    print("Error: Coin node is nil") // ADDED: Debug print
+                    return
+                }
+            
+            coinNode.removeFromParent()
+            coins.removeAll { $0.node == coinNode }
+            coinCount += 1
+            
+            // Update UI to show collected coins
+            updateCoinCountLabel()
+        }
+        
+        // Add this function to update the coin count label
+        func updateCoinCountLabel() {
+            // Assuming you have a label for coin count in your UI
+            coinCountLabel.text = "Coins: \(coinCount)"
+        }
+        
+        // Modify the existing handleCollision function
+        func handleCollision() {
             isGameOver = true
+            
+            
+            gameOverHandler.triggerGameOver(startTime: startTime, coinCount: coinCount)
         }
-    }
+
     
-    // Extracts the first touch from the touches set. In this game, we're only concerned with the first touch event
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        // Gets the location of the touch within the scene's
-        // Check if Tommy is touched
-        // Checks if the touch was on Tommy by seeing if the touch location is inside tommyNode's bounds if tommyNode.contains(location) {
-        // If true, isTouching Tommy = true is set, indicating that Tommy is currently being touched, enabling Tommy to be dragged in the touchesMoved function
-        if let touch = touches.first {
-            let location = touch.location(in: self)
-            if player.node.contains(location) {
-                isTouchingTommy = true
-            }
-        }
-    }
     
-    // Move Tommy only if he is being touched
-    // Updates Tommy's position to match the new touch location, allowing the player to "drag" Tommy by moving their finger across the screen
-    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if isTouchingTommy, let touch = touches.first {
-            let location = touch.location(in: self)
-            player.node.position = location
-        }
-    }
-    
-    // Reset the flag when the touch ends
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        isTouchingTommy = false
-    }
-    
-    // Reset the flag if the touch is cancelled
-    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-        isTouchingTommy = false
-    }
 }
 
